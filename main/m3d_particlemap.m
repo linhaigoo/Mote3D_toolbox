@@ -1,40 +1,40 @@
-## Copyright (C) 2016 Henning Richter
-##
-## This function file is part of the 'Mote3D' toolbox for microstructure modelling.
-##
-## This program is free software; you can redistribute it and/or modify it
-## under the terms of the GNU General Public License as published by
-## the Free Software Foundation; either version 3 of the License, or
-## (at your option) any later version.
-##
-## This program is distributed in the hope that it will be useful,
-## but WITHOUT ANY WARRANTY; without even the implied warranty of
-## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-## GNU General Public License for more details.
-##
-## You should have received a copy of the GNU General Public License
-## along with this program. If not, see <http://www.gnu.org/licenses/>.
+%# Copyright (C) 2016 Henning Richter
+%#
+%# This function file is part of the 'Mote3D' toolbox for microstructure modelling.
+%#
+%# This program is free software; you can redistribute it and/or modify it
+%# under the terms of the GNU General Public License as published by
+%# the Free Software Foundation; either version 3 of the License, or
+%# (at your option) any later version.
+%#
+%# This program is distributed in the hope that it will be useful,
+%# but WITHOUT ANY WARRANTY; without even the implied warranty of
+%# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+%# GNU General Public License for more details.
+%#
+%# You should have received a copy of the GNU General Public License
+%# along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-## -*- texinfo -*-
-## @deftypefn {Function File} {@var{P_mat}, @var{R_vec} =} m3d_particlemap(@var{P_mat}, @var{R_vec},
-## @var{i}, @var{n_total}, @var{box_length})
-##
-## Generate additional particles to assure periodicity of the microstructure.
-##
-## Create additional particles with radii @var{R_vec} for each particle @var{i}
-## of the @var{n_total} particles at opposing positions @var{P_mat} around the
-## cubical domain with edge length @var{box_length} in order to assure periodicity
-## of the random particulate microstructure.
-## @end deftypefn
-## @cindex m3d_particlemap
+%# -*- texinfo -*-
+%# @deftypefn {Function File} {@var{P_mat}, @var{R_vec} =} m3d_particlemap(@var{P_mat}, @var{R_vec}, ...
+%# @var{i}, @var{n_total}, @var{box_length})
+%#
+%# Generate additional particles to assure periodicity of the microstructure.
+%#
+%# Create additional particles with radii @var{R_vec} for each particle @var{i}
+%# of the @var{n_total} particles at opposing positions @var{P_mat} around the
+%# cubical domain with edge length @var{box_length} in order to assure periodicity
+%# of the random particulate microstructure.
+%# @end deftypefn
+%# @cindex m3d_particlemap
 
-## Author: Henning Richter <henning.richter@dlr.de>
-## Created: April 2016
-## Keywords: particle mapping, random periodic microstructure
+%# Author: Henning Richter <henning.richter@dlr.de>
+%# Created: April 2016
+%# Keywords: particle mapping, random periodic microstructure
 
 function [P_mat, R_vec] = m3d_particlemap(P_mat, R_vec, i, n_total, box_length)
 
-  ## Map particles:
+  %# Map particles:
   P_mat((n_total+i),2:4) = P_mat(i,2:4)-box_length;
   R_vec((n_total+i),2) = R_vec(i,2);
   P_mat((2*n_total+i),2) = P_mat(i,2);
@@ -128,4 +128,4 @@ function [P_mat, R_vec] = m3d_particlemap(P_mat, R_vec, i, n_total, box_length)
   P_mat((n_total+1):27*n_total,1) = ((n_total+1):1:27*n_total)';
   R_vec((n_total+1):27*n_total,1) = ((n_total+1):1:27*n_total)';
 
-endfunction
+end
